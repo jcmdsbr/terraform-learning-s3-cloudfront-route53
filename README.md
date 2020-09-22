@@ -1,0 +1,1 @@
+# terraform-static-deploy-example
