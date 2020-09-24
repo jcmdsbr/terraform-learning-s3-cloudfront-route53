@@ -5,13 +5,13 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "jcmds"
-    workspaces {
-      name = "terraform-static-deploy-example"
-    }
-  }
+  # backend "remote" {
+  #   hostname     = "app.terraform.io"
+  #   organization = "jcmds"
+  #   workspaces {
+  #     name = "terraform-static-deploy-example"
+  #   }
+  # }
 }
 
 data "template_file" "policy" {
@@ -23,19 +23,27 @@ data "template_file" "policy" {
 }
 
 provider "aws" {
-  region  = var.aws_region
-  profile = var.aws_profile
+  region                  = var.aws_region
+  shared_credentials_file = var.aws_credentials_file
+  profile                 = var.aws_profile
 }
+
 
 resource "aws_s3_bucket" "logger" {
   bucket = "${var.aws_domain}-logger"
   acl    = "log-delivery-write"
+  force_destroy = true
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_s3_bucket" "webapp" {
   bucket = var.aws_domain
   acl    = "public-read"
   policy = data.template_file.policy.rendered
+  force_destroy = true
 
   website {
     index_document = "index.html"
@@ -45,6 +53,10 @@ resource "aws_s3_bucket" "webapp" {
   logging {
     target_bucket = aws_s3_bucket.logger.id
     target_prefix = "log/"
+  }
+  
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
@@ -63,7 +75,7 @@ resource "null_resource" "webapp_files" {
   }
 
   provisioner "local-exec" {
-    command = "aws s3 sync ./app/dist/app/ s3://${var.aws_domain}"
+    command = "aws s3 sync ./app/dist/app/ s3://${var.aws_domain} --profile terraform"
   }
 
   depends_on = [aws_s3_bucket.webapp]
