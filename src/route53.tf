@@ -22,7 +22,7 @@
 #     evaluate_target_health = false
 #   }
 
-#  depends_on = [aws_cloudfront_distribution.s3_distribution]
+#   depends_on = [aws_cloudfront_distribution.s3_distribution]
 # }
 
 # resource "aws_route53_record" "www" {

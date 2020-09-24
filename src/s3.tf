@@ -1,4 +1,14 @@
 
+
+
+data "template_file" "policy" {
+  template = file("templates/policy.json")
+
+  vars = {
+    bucket_name = var.aws_domain
+  }
+}
+
 resource "aws_s3_bucket" "logger" {
   bucket        = "${var.aws_domain}-logger"
   acl           = "log-delivery-write"
@@ -45,7 +55,7 @@ resource "null_resource" "webapp_files" {
   }
 
   provisioner "local-exec" {
-    command = "aws s3 sync ./app/dist/app/ s3://${var.aws_domain} --profile terraform"
+    command = "aws s3 sync ./app/ s3://${var.aws_domain} --profile terraform"
   }
 
   depends_on = [aws_s3_bucket.webapp]
