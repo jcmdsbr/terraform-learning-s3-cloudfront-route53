@@ -1,7 +1,6 @@
 # Terraform S3/CloudFront/Route53 :sunglasses:
 
 - Learning Terraform to deploying a site in AWS Cloud using s3 bucket, cloud front and route53
-- 
 
 ## Give a Star! :star:
 
