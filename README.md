@@ -1,12 +1,24 @@
+# Terraform S3/CloudFront/Route53 :sunglasses:
 
-# Create a IAC (Terraform) to Host a Static Website in AWS
+- Learning Terraform to deploying a site in AWS Cloud using s3 bucket, cloud front and route53
+- 
+
+## Give a Star! :star:
+
+If you liked the project, please give a star ;)
+
+## You need some of the fallowing tools :exclamation:
+
+-  Terraform
+-  AWS Account
+
+## Description :books:
 
 Static websites deliver HTML, JavaScript, images, video and other files to your website visitors, and contain no application code. They are best for sites with few authors and relatively infrequent content changes, typically personal and simple marketing websites. Static websites are very low cost, provide high-levels of reliability, require almost no IT administration, and scale to handle enterprise-level traffic with no additional work.
 
+### Resources 📑
 
-## Resources:
-
-### AWS S3 Bucket
+#### AWS S3 Bucket ✔️
 
 Amazon S3 provides secure, durable, and highly-scalable cloud storage for the objects that make up your static website. Examples of objects you can store include HTML pages, CSS files, images, videos, and JavaScript. Amazon S3 makes it easy to use object storage with a simple web interface to store and retrieve data from anywhere on the web, meaning that your website will be reliably available to your visitors.
 
@@ -14,7 +26,7 @@ How Pricing Works: Amazon S3 Pricing is based on five types of usage: the type o
 
 - Example: Using Standard Storage in US East, if you store 5GB of content, you’d pay $0.15 per month. If you created your account in the past 12 months and you’re eligible for the AWS Free Tier, you’d pay $0.00 per month.
 
-### AWS Route 53
+#### AWS Route 53 ✔️
 
 Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service. It is designed to give you a reliable and cost-effective way to route end users to Internet applications by translating a domain name (like www.yourwebsite.com) into the numeric IP addresses (e.g., 192.0.2.1) that computers use to connect to each other.  When someone visits your website, Amazon Route 53 will manage this domain name to IP address relationship this in a Hosted Zone.
 
@@ -23,7 +35,7 @@ How Pricing Works: Amazon Route53 pricing is based on three things: the number o
 - Example: For a static website you’ll register one domain and use one Hosted Zone. All queries to Amazon S3-based static websites are free. The cost to register a domain varies by the top level domain you want to register. For example, “.com” is $12 annually and “.net” is $11 annually. For a list of all domain prices, see Amazon Route 53 Domain Name Pricing. The hosted zone for your site will cost $0.50 per month.
 
 
-### AWS CloudFront
+#### AWS CloudFront ✔️
 
 Amazon CloudFront is a global Content Delivery Network (CDN), which will host your website on a global network of edge servers, helping users load your website more quickly. When requests for your website content come through, they are automatically routed to the nearest edge location, closest to where the request originated from, so your content is delivered to your end user with the best possible performance.
 
